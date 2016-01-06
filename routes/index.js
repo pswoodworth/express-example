@@ -10,7 +10,6 @@ router.get('/', function(req, res) {
       title: 'Express',
       users: users
     });
-    console.log(users);
   });
 });
 
