@@ -45,7 +45,6 @@ let schema = new GraphQLSchema({
     fields: {
       user: {
         type: userType,
-        description: 'A user',
         // args will automatically be mapped to `where`
         args: {
           id: {
@@ -54,11 +53,28 @@ let schema = new GraphQLSchema({
           }
         },
         resolve: resolver(models.User, {
-          include: true // disable auto including of associations based on AST - default: true
+          include: false // disable auto including of associations based on AST - default: true
         })
+      },
+      users: {
+        // The resolver will use `findOne` or `findAll` depending on whether the field it's used in is a `GraphQLList` or not.
+        type: new GraphQLList(userType),
+        args: {
+          // An arg with the key limit will automatically be converted to a limit on the target
+          limit: {
+            type: GraphQLInt
+          },
+          // An arg with the key order will automatically be converted to a order on the target
+          order: {
+            type: GraphQLString
+          }
+        },
+        resolve: resolver(models.User)
       }
     }
   })
 });
+
+
 
 module.exports = schema;
