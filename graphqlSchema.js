@@ -1,6 +1,7 @@
 var models = require('./models');
-import {resolver} from 'graphql-sequelize';
+import {resolver, attributeFields} from 'graphql-sequelize';
 import {GraphQLObjectType, GraphQLNonNull, GraphQLList, GraphQLSchema, GraphQLInt, GraphQLString} from 'graphql';
+import {_} from 'underscore';
 
 
 let taskType = new GraphQLObjectType({
@@ -21,22 +22,14 @@ let taskType = new GraphQLObjectType({
 let userType = new GraphQLObjectType({
   name: 'User',
   description: 'A user',
-  fields: {
-    id: {
-      type: new GraphQLNonNull(GraphQLInt),
-      description: 'The id of the user.',
-    },
-    username: {
-      type: GraphQLString,
-      description: 'The name of the user.',
-    },
+  fields: _.assign(attributeFields(models.User), {
     tasks: {
       type: new GraphQLList(taskType),
       resolve: resolver(models.User.Tasks, {
         separate: false // load seperately, disables auto including - default: false
       })
     }
-  }
+  })
 });
 
 let schema = new GraphQLSchema({
@@ -70,6 +63,26 @@ let schema = new GraphQLSchema({
           }
         },
         resolve: resolver(models.User)
+      }
+    }
+  }),
+  mutation: new GraphQLObjectType({
+    name: 'RootMutationType',
+    fields: {
+      createUser: {
+        type: userType,
+        args: {
+          username: {
+            description: 'A username for the user',
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        description: 'Creates a new user',
+        resolve: function(obj, {username}) {
+          return models.User.create({
+            username: username
+          });
+        }
       }
     }
   })
