@@ -19,7 +19,7 @@ The express-exampel app contains a simple UI that you can use for seeding data i
 
 GraphiQL is included through express-graphql, and can be accessed in your browser at http://localhost:3000/graphql.
 
-All of the magic to adapt the sequelize schema to a GraphQL schema takes places in `./graphqlSchema` (at least for now).
+All of the magic to adapt the sequelize schema to a GraphQL schema takes places in `./graphqlSchema.js` (at least for now).
 
 The only change to the sequelize schema from the out-of-the-box version of express-example is the addition of `User.Tasks = User.hasMany(models.Task, {as: 'tasks'});` in `models/user.js` in order to create the association in a way that graphql-sequelize can digest. This works, but I have a feeling this is not the cleanest approach, and I'd love to hear if you have a better one!
 
