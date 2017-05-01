@@ -51,7 +51,7 @@ Get a user by id, return username, id and title of associated tasks.
 
 ```
 mutation {
-	createUser(username: "Doug Funny"){
+  createUser(username: "Doug Funny"){
     id
     username
   }
