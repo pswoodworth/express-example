@@ -1,6 +1,6 @@
 # sequelize-graphql-example
 
-This is a working fork of sequelize's [express-example](https://github.com/sequelize/express-example) adapted to have additional support for interacting with the database through graphql using [graphql-sequelize](https://github.com/mickhansen/graphql-sequelize), [express-graphql](https://github.com/graphql/express-graphql) and [express-graphql-folder-structure](https://github.com/mykhailo-riabokon/express_graphql_folder_structure). It's meant only for illustrative purposes, and done largely for my own edification.
+This is a working fork of sequelize's [express-example](https://github.com/sequelize/express-example) adapted to have additional support for interacting with the database through graphql using [graphql-sequelize](https://github.com/mickhansen/graphql-sequelize), [express-graphql](https://github.com/graphql/express-graphql) and folder structure [express-graphql-folder-structure](https://github.com/mykhailo-riabokon/express_graphql_folder_structure). It's meant only for illustrative purposes, and done largely for my own edification.
 
 ## Starting the app
 
