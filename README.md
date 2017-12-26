@@ -1,6 +1,6 @@
 # sequelize-graphql-example
 
-This is a working fork of sequelize's [express-example](https://github.com/sequelize/express-example) adapted to have additional support for interacting with the database through graphql using [graphql-sequelize](https://github.com/mickhansen/graphql-sequelize) and [express-graphql](https://github.com/graphql/express-graphql). It's meant only for illustrative purposes, and done largely for my own edification.
+This is a working fork of sequelize's [express-example](https://github.com/sequelize/express-example) adapted to have additional support for interacting with the database through graphql using [graphql-sequelize](https://github.com/mickhansen/graphql-sequelize), [express-graphql](https://github.com/graphql/express-graphql) and [express-graphql-folder-structure](https://github.com/mykhailo-riabokon/express_graphql_folder_structure). It's meant only for illustrative purposes, and done largely for my own edification.
 
 ## Starting the app
 
@@ -44,6 +44,17 @@ Get a user by id, return username, id and title of associated tasks.
       title
     }
   }  
+}
+```
+
+Get a task by id, return id and title of task.
+```
+{
+  task(id:1){
+    id
+    title
+
+  }
 }
 ```
 
